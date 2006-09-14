@@ -1,8 +1,8 @@
 ---
 name: Test-Count
-version: 0.01
+version: 0.0101
 author:
-  - Shlomi Fish <shlomif@cpan.org>
+  - 'Shlomi Fish <shlomif@cpan.org>'
 abstract: A Module to keep track of the number of tests in a script.
 license: bsd
 resources:
@@ -13,7 +13,7 @@ build_requires:
 provides:
   Test::Count:
     file: lib/Test/Count.pm
-    version: 0.01
+    version: 0.0101
   Test::Count::Base:
     file: lib/Test/Count/Base.pm
   Test::Count::Filter:

@@ -1,6 +1,6 @@
 ---
 name: Test-Count
-version: 0.0102
+version: 0.0103
 author:
   - 'Shlomi Fish <shlomif@cpan.org>'
 abstract: A Module to keep track of the number of tests in a script.
@@ -13,7 +13,7 @@ build_requires:
 provides:
   Test::Count:
     file: lib/Test/Count.pm
-    version: 0.0102
+    version: 0.0103
   Test::Count::Base:
     file: lib/Test/Count/Base.pm
   Test::Count::Filter:

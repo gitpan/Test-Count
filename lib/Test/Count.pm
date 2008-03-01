@@ -34,7 +34,7 @@ Test::Count - Module for keeping track of the number of tests in a Test Script.
 
 =cut
 
-our $VERSION = '0.0104';
+our $VERSION = '0.0105';
 
 =head1 SYNOPSIS
 
@@ -103,7 +103,8 @@ sub process
                 }
             );
         }
-        elsif ($line =~ /# TEST((?:[+*].*)?)$/)
+        # The \s* is to handle trailing whitespace properly.
+        elsif ($line =~ /# TEST((?:[+*].*)?)\s*$/)
         {
             my $s = $1;
             $parser->update_count(

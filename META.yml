@@ -1,6 +1,6 @@
 ---
 name: Test-Count
-version: 0.0104
+version: 0.0105
 author:
   - 'Shlomi Fish <shlomif@cpan.org>'
 abstract: A Module to keep track of the number of tests in a script.
@@ -17,7 +17,7 @@ build_requires:
 provides:
   Test::Count:
     file: lib/Test/Count.pm
-    version: 0.0104
+    version: 0.0105
   Test::Count::Base:
     file: lib/Test/Count/Base.pm
   Test::Count::Filter:
@@ -26,7 +26,7 @@ provides:
   Test::Count::Parser:
     file: lib/Test/Count/Parser.pm
     version: 0.01
-generated_by: Module::Build version 0.2805
+generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2

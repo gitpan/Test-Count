@@ -1,12 +1,12 @@
 ---
 name: Test-Count
-version: 0.04
+version: 0.0401
 author:
   - 'Shlomi Fish <shlomif@cpan.org>'
 abstract: A Module to keep track of the number of tests in a script.
-license: bsd
+license: mit
 resources:
-  license: http://www.opensource.org/licenses/bsd-license.php
+  license: http://www.opensource.org/licenses/mit-license.php
 requires:
   Parse::RecDescent: 0
   base: 0
@@ -20,7 +20,7 @@ build_requires:
 provides:
   Test::Count:
     file: lib/Test/Count.pm
-    version: 0.04
+    version: 0.0401
   Test::Count::Base:
     file: lib/Test/Count/Base.pm
   Test::Count::Filter:
@@ -29,7 +29,7 @@ provides:
   Test::Count::Parser:
     file: lib/Test/Count/Parser.pm
     version: 0.01
-generated_by: Module::Build version 0.2808
+generated_by: Module::Build version 0.31
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2

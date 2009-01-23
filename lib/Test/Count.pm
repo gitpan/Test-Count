@@ -53,7 +53,7 @@ Test::Count - Module for keeping track of the number of tests in a test script.
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.0401';
 
 =head1 SYNOPSIS
 
@@ -199,7 +199,7 @@ L<http://search.cpan.org/dist/Test::Count>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2006 Shlomi Fish, all rights reserved.
+Copyright 2006 Shlomi Fish.
 
 This program is released under the following license: MIT X11.
 

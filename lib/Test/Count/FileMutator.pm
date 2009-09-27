@@ -1,4 +1,4 @@
-package Test::Count::Filter;
+package Test::Count::FileMutator;
 
 use warnings;
 use strict;
@@ -9,7 +9,7 @@ use Test::Count;
 
 =head1 NAME
 
-Test::Count::Filter - a filter that counts the tests and updates the test count.
+Test::Count::FileMutator - modify a file in place
 
 =cut
 
@@ -25,14 +25,14 @@ sub _counter
     return $self->{'_counter'};
 }
 
-sub _out_fh
+sub _filename
 {
     my $self = shift;
     if (@_)
     {
-        $self->{'_out_fh'} = shift;
+        $self->{'_filename'} = shift;
     }
-    return $self->{'_out_fh'};
+    return $self->{'_filename'};
 }
 
 sub _plan_prefix_regex
@@ -61,13 +61,9 @@ C<%args> may contain the following:
 
 =over 4
 
-=item * input_fh
+=item * filename
 
-The input filehandle - defaults to STDIN.
-
-=item * output_fh
-
-The output filehandle - defaults to STDOUT.
+The filename of the file to mutate.
 
 =item * assert_prefix_regex
 
@@ -90,10 +86,7 @@ sub _init
     my $self = shift;
     my $args = shift;
 
-    $args->{input_fh} ||= \*STDIN;
-    $args->{output_fh} ||= \*STDOUT;
     $args->{plan_prefix_regex} ||= qr{(?:(?:use Test.*\btests)|plan tests)\s*=>\s*};
-
 
     # Remmed out because Test::Count handles it by itself.
     # if (defined($args->{assert_prefix_regex}))
@@ -101,20 +94,20 @@ sub _init
     #     $self->_assert_prefix_regex($args->{assert_prefix_regex});
     # }
     $self->_plan_prefix_regex($args->{plan_prefix_regex});
-    $self->_out_fh($args->{output_fh});
+    $self->_filename($args->{filename});
 
     $self->_counter(Test::Count->new($args));
 
     return 0;
 }
 
-=head2 $filter->process()
+=head2 $filter->modify()
 
-Processes the stream.
+Modify the file in-place.
 
 =cut
 
-sub process
+sub modify
 {
     my $self = shift;
 
@@ -125,6 +118,9 @@ sub process
     my $plan_re = $self->_plan_prefix_regex();
 
     my @lines = @{$ret->{lines}};
+
+    open my $out_fh, ">", $self->_filename()
+        or die "Could not open file '" . $self->_filename() . "' for writing - $!.";
     LINES_LOOP:
     while (my $l = shift(@lines))
     {
@@ -132,16 +128,17 @@ sub process
             s{^($plan_re)\d+}{$1$count}
            )
         {
-            print {$self->_out_fh()} $l;
+            print {$out_fh} $l;
             last LINES_LOOP;
         }
         else
         {
-            print {$self->_out_fh()} $l;
+            print {$out_fh} $l;
         }
     }
-    print {$self->_out_fh()} @lines;
+    print {$out_fh} @lines;
 
+    close($out_fh);
     return 0;
 }
 

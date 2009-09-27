@@ -27,12 +27,34 @@ sub _assert_prefix_regex
     return $self->{'_assert_prefix_regex'};
 }
 
+sub _filename
+{
+    my $self = shift;
+    if (@_)
+    {
+        $self->{'_filename'} = shift;
+    }
+    return $self->{'_filename'};
+}
+
 sub _init
 {
     my $self = shift;
     my $args = shift;
 
-    my $in = $args->{'input_fh'};
+    my $in;
+    
+    if (exists($args->{'filename'}))
+    {
+        $self->_filename($args->{'filename'});
+        open $in, "<", $self->_filename()
+            or die "Could not open '" . $self->_filename() . "' - $!."
+        ;
+    }
+    else
+    {
+        $in = $args->{'input_fh'};
+    }
 
     $self->_in_fh($in);
     if (exists($args->{'assert_prefix_regex'}))
@@ -53,7 +75,7 @@ Test::Count - Module for keeping track of the number of tests in a test script.
 
 =cut
 
-our $VERSION = '0.0500';
+our $VERSION = '0.0600';
 
 =head1 SYNOPSIS
 
@@ -120,15 +142,20 @@ The lines of the stream as is.
 sub process
 {
     my $self = shift;
+    my $args = shift;
 
-    my $parser = Test::Count::Parser->new();
+    my $parser = $args->{parser} || Test::Count::Parser->new();
+
+    $parser->_push_current_filename($self->_filename);
 
     my $assert_re = $self->_assert_prefix_regex();
 
-    my @file_lines;
-    while (my $line = readline($self->_in_fh()))
+    my @file_lines = readline($self->_in_fh());
+    close($self->_in_fh());
+
+    foreach my $idx (0 .. $#file_lines)
     {
-        push @file_lines, $line;
+        my $line = $file_lines[$idx];
 
         chomp($line);
         if ($line =~ /${assert_re}:(.*)$/)
@@ -150,10 +177,25 @@ sub process
             );
         }
     }
+    $parser->_pop_current_filenames();
 
     return { 'tests_count' => $parser->get_count(), 'lines' => \@file_lines,};
 }
 
+=head1 GRAMMAR DESCRIPTION
+
+You can put any mathematical expressions (using parentheses, C<+>, C<->,
+C<*>, C</> and C<%> there). 
+You can also assign variables using 
+C<# TEST:$myvar=5+6;$second_var=$myvar+3> and later use them in the add
+to count expressions. A C<$var++> construct is also available.
+
+You can also do C<# TEST:source "path-to-file-here.txt"> where the filename
+comes in quotes, in order to include the filename and process it (similar
+to the C-shell or Bash "source" command) . You can use the special variable 
+C<$^CURRENT_DIRNAME> there for the dirname of the current file.
+
+Finally, C<# TEST*EXPR()> and C<# TEST+$EXPR()> add tests to the count.
 
 =head1 AUTHOR
 

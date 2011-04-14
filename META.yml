@@ -1,48 +1,16 @@
 ---
-name: Test-Count
-version: 0.0600
+abstract: 'A Module to keep track of the number of tests in a script.'
 author:
   - 'Shlomi Fish <shlomif@cpan.org>'
-abstract: A Module to keep track of the number of tests in a script.
-license: mit
-resources:
-  license: http://www.opensource.org/licenses/mit-license.php
-  repository: http://svn.berlios.de/svnroot/repos/web-cpan/Test-Count/trunk
 build_requires:
   File::Spec: 0
   IO::Scalar: 0
   Test::More: 0
   strict: 0
   warnings: 0
-requires:
-  Parse::RecDescent: 0
-  base: 0
-  perl: 5.006
 configure_requires:
-  Module::Build: 0.35
-provides:
-  Test::Count:
-    file: lib/Test/Count.pm
-    version: 0.0600
-  Test::Count::Base:
-    file: lib/Test/Count/Base.pm
-  Test::Count::FileMutator:
-    file: lib/Test/Count/FileMutator.pm
-    version: 0.0600
-  Test::Count::FileMutator::ByFileType::App:
-    file: lib/Test/Count/FileMutator/ByFileType/App.pm
-  Test::Count::Filter:
-    file: lib/Test/Count/Filter.pm
-    version: 0.0600
-  Test::Count::Filter::ByFileType::App:
-    file: lib/Test/Count/Filter/ByFileType/App.pm
-  Test::Count::Parser:
-    file: lib/Test/Count/Parser.pm
-    version: 0.0600
-generated_by: Module::Build version 0.35
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3617'
 keywords:
   - annotations
   - assertions
@@ -57,3 +25,35 @@ keywords:
   - test
   - Test::More
   - tests
+license: mit
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Test-Count
+provides:
+  Test::Count:
+    file: lib/Test/Count.pm
+    version: 0.0700
+  Test::Count::Base:
+    file: lib/Test/Count/Base.pm
+  Test::Count::FileMutator:
+    file: lib/Test/Count/FileMutator.pm
+    version: 0.0700
+  Test::Count::FileMutator::ByFileType::App:
+    file: lib/Test/Count/FileMutator/ByFileType/App.pm
+  Test::Count::Filter:
+    file: lib/Test/Count/Filter.pm
+    version: 0.0700
+  Test::Count::Filter::ByFileType::App:
+    file: lib/Test/Count/Filter/ByFileType/App.pm
+  Test::Count::Parser:
+    file: lib/Test/Count/Parser.pm
+    version: 0.0700
+requires:
+  Parse::RecDescent: 0
+  base: 0
+  perl: 5.006
+resources:
+  license: http://www.opensource.org/licenses/mit-license.php
+  repository: http://svn.berlios.de/svnroot/repos/web-cpan/Test-Count/trunk
+version: 0.0700

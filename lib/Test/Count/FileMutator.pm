@@ -8,13 +8,15 @@ use base 'Test::Count::Base';
 use Test::Count;
 use Test::Count::Lib;
 
+=encoding utf8
+
 =head1 NAME
 
 Test::Count::FileMutator - modify a file in place
 
 =cut
 
-our $VERSION = '0.0801';
+our $VERSION = '0.0802';
 
 sub _counter
 {

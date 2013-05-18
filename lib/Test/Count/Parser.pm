@@ -17,7 +17,7 @@ Test::Count::Parser - A Parser for Test::Count.
 
 =cut
 
-our $VERSION = '0.0803';
+our $VERSION = '0.0900';
 
 sub _get_grammar
 {
@@ -34,6 +34,9 @@ statement:    assignment
 including_file: 'source' string          {push @{$thisparser->{includes}}, $item[2];}
 
 assignment:    variable '=' statement   {$thisparser->{vars}->{$item [1]} = $item [3]}
+              | variable '+=' statement   {$thisparser->{vars}->{$item [1]} += $item [3]}
+              | variable '-=' statement   {$thisparser->{vars}->{$item [1]} -= $item [3]}
+              | variable '*=' statement   {$thisparser->{vars}->{$item [1]} *= $item [3]}
 
 expression:     variable '++'            {$thisparser->{vars}->{$item [1]}++}
               | term '+' expression      {$item [1] + $item [3]}

@@ -54,7 +54,7 @@
    "provides" : {
       "Test::Count" : {
          "file" : "lib/Test/Count.pm",
-         "version" : "0.0900"
+         "version" : "0.0901"
       },
       "Test::Count::Base" : {
          "file" : "lib/Test/Count/Base.pm",
@@ -62,7 +62,7 @@
       },
       "Test::Count::FileMutator" : {
          "file" : "lib/Test/Count/FileMutator.pm",
-         "version" : "0.0900"
+         "version" : "0.0901"
       },
       "Test::Count::FileMutator::ByFileType::App" : {
          "file" : "lib/Test/Count/FileMutator/ByFileType/App.pm",
@@ -70,7 +70,7 @@
       },
       "Test::Count::Filter" : {
          "file" : "lib/Test/Count/Filter.pm",
-         "version" : "0.0900"
+         "version" : "0.0901"
       },
       "Test::Count::Filter::ByFileType::App" : {
          "file" : "lib/Test/Count/Filter/ByFileType/App.pm",
@@ -82,7 +82,7 @@
       },
       "Test::Count::Parser" : {
          "file" : "lib/Test/Count/Parser.pm",
-         "version" : "0.0900"
+         "version" : "0.0901"
       }
    },
    "release_status" : "stable",
@@ -91,8 +91,8 @@
          "http://www.opensource.org/licenses/mit-license.php"
       ],
       "repository" : {
-         "url" : "http://svn.berlios.de/svnroot/repos/web-cpan/Test-Count/trunk"
+         "url" : "http://bitbucket.org/shlomif/perl-test-count"
       }
    },
-   "version" : "0.0900"
+   "version" : "0.0901"
 }

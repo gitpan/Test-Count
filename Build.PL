@@ -29,12 +29,11 @@ my $builder = Test::Run::Builder->new(
         'warnings' => 0,
     },
     add_to_cleanup      => [ 'Test::Count-*' ],
-    create_makefile_pl => "passthrough",
     meta_merge =>
     {
         resources =>
         {
-            repository => "http://svn.berlios.de/svnroot/repos/web-cpan/Test-Count/trunk",
+            repository => "http://bitbucket.org/shlomif/perl-test-count",
         },
         keywords =>
         [
